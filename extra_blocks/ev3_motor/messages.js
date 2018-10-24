@@ -1,0 +1,13 @@
+Blockly.Msg.START_MOTOR_PORT = 'start motor port';
+Blockly.Msg.STOP_MOTOR_PORT = 'stop motor port';
+Blockly.Msg.WAIT_MOTOR_PORT = 'wait for motor port';
+Blockly.Msg.ON = 'on';
+Blockly.Msg.MOTOR_ON_TOOLTIP = 'turns on the motor';
+Blockly.Msg.MOTOR_OFF_TOOLTIP = 'stop the motor';
+Blockly.Msg.MOTOR_SPEED = 'speed (0-1000)';
+Blockly.Msg.MOTOR_TIME = 'time (ms)';
+Blockly.Msg.MOTOR_POS = 'position';
+Blockly.Msg.MOTORS_INVERTED = 'the second, the other way?';
+Blockly.Msg.MOTORS_WAIT = 'wait for them to finish?';
+Blockly.Msg.MOTOR_WAIT = 'wait for it to finish?';
+Blockly.Msg.EV3_LINKED_MOTORS = 'move at the same time';
