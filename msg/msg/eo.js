@@ -1,0 +1,26 @@
+var MSG = {
+  title: "Blokboto",
+  blocks: "Blokoj",
+  linkTooltip: "Konservi aliron al la blokoj.",
+  runTooltip: "Ruli la programon difinita de la blokoj en la laborareo.",
+  badCode: "Eraro de la programo:\n%1",
+  timeout: "Maksimuma nombro de ordonoj superita.",
+  trashTooltip: "Forigi ĉiujn blokojn.",
+  catEv3dev: "Ev3dev",
+  catLogic: "Logiko",
+  catLoops: "Cikloj",
+  catMath: "Matematiko",
+  catText: "Teksto",
+  catLists: "Listoj",
+  catColour: "Koloro",
+  catVariables: "Variantoj",
+  catFunctions: "Funkcioj",
+  listVariable: "listo",
+  textVariable: "teksto",
+  httpRequestError: "Okazis problemo kun la peto.",
+  linkAlert: "Dividu viajn blokojn per tiu ĉi ligilo:\n\n%1",
+  hashError: "«%1» ne kongruas kun iu ajn konservita programo.",
+  xmlError: "Ne eblis ŝargi la konservitan dosieron. Ĉu eble ĝi estis kreita de alia versio de Blokboto?",
+  badXml: "Eraro dum analizo de XML:\n%1\n\nElektu Akcepti por abandoni viajn ŝanĝojn aŭ Nuligi por pluredakti la kodon XML."
+};
+Blockly.Msg["EV3DEV_HUE"] = "360";
