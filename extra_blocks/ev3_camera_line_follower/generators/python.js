@@ -37,7 +37,7 @@ Blockly.Python['ev3_camera_take_picture'] = function(block) {
   # Color thresholding
   ret,thresh = cv2.threshold(blur,60,255,cv2.THRESH_BINARY_INV)
 
-  ev3_last_black_area = int(cv2.countNonZero(thresh) / thresh.size * 100)
+  ev3_last_black_area = int(cv2.countNonZero(thresh) * 100 / thresh.size)
 
   # Find the contours of the frame
   contours,hierarchy = cv2.findContours(thresh.copy(), 1, cv2.CHAIN_APPROX_NONE)
