@@ -242,7 +242,7 @@ Code.LANG = Code.getLang();
  * List of tab names.
  * @private
  */
-Code.TABS_ = ['blocks', 'python', 'xml' ];
+Code.TABS_ = ['blocks', 'file', 'python', 'xml' ];
 
 Code.selected = 'blocks';
 
@@ -323,7 +323,9 @@ Code.renderContent = function() {
       code = PR.prettyPrintOne(code, 'py');
       content.innerHTML = code;
     }
-  }
+  }  else if (content.id == 'content_file') {
+      document.getElementById('fileList').innerHTML = listPrograms();
+    }
 };
 
 /**
@@ -401,7 +403,7 @@ Code.init = function() {
   Code.bindClick('trashButton',
       function() {Code.discard(); Code.renderContent();});
   Code.bindClick('runButton', Code.runJS);
-  Code.bindClick('saveButton', Code.saveProgram);
+  //Code.bindClick('saveButton', Code.saveProgram);
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
@@ -484,7 +486,7 @@ xhttp.send(Blockly.Python.workspaceToCode(Code.workspace));
 
 Code.saveProgram = function() {
 var xhttp = new XMLHttpRequest();
-xhttp.open("POST","/saveProgram",true);
+xhttp.open("POST","/saveProgram?file=" + document.getElementById("myFile").value,true);
 
 var xml = Blockly.Xml.workspaceToDom(Code.workspace);
 var xml_text = Blockly.Xml.domToText(xml);
@@ -512,3 +514,30 @@ document.write('<script src="msg/' + Code.LANG + '.js"></script>\n');
 document.write('<script src="blockly-master/msg/js/' + Code.LANG + '.js"></script>\n');
 
 window.addEventListener('load', Code.init);
+
+function saveProgram() {
+var xhttp = new XMLHttpRequest();
+xhttp.open("POST","/saveProgram?file=" + document.getElementById("myFile").value,true);
+
+
+var xml = Blockly.Xml.workspaceToDom(Code.workspace);
+var xml_text = Blockly.Xml.domToText(xml);
+
+xhttp.send(xml_text);
+};
+function loadProgram(f) {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("GET", "loadProgram?file=" + f, false);
+  xhttp.send();
+  
+  var xml = Blockly.Xml.textToDom(xhttp.responseText);
+  Blockly.Xml.domToWorkspace(xml, Code.workspace);
+}
+function listPrograms() {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("GET", "listPrograms", false);
+  xhttp.send();
+  return xhttp.responseText;
+}

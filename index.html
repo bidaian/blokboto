@@ -26,7 +26,7 @@
     <tr>
       <td>
         <h1>
-          <span id="title">...</span><a href="#" onclick="download('abcd','efg');" ">bajar</a>
+          <span id="title">...</span>
         </h1>
       </td>
       <td class="farSide">
@@ -39,6 +39,7 @@
           <tr id="tabRow" height="1em">
             <td id="tab_blocks" class="tabon">...</td>
             <td class="tabmin">&nbsp;</td>
+            <td id="tab_file" class="taboff">File</td>
             <td id="tab_python" class="taboff">Python</td>
             <td id="tab_xml" class="taboff">XML</td>
             <td class="tabmax">
@@ -51,10 +52,6 @@
               <button id="runButton" class="notext primary" title="...">
                 <img src='blockly-master/media/1x1.gif' class="run icon21">
               </button>
-              <button id="saveButton" class="notext primary" title="...">
-                <img src='blockly-master/media/1x1.gif' class="run icon21">
-              </button>
-
             </td>
           </tr>
         </table>
@@ -67,6 +64,16 @@
   </table>
   <div id="content_blocks" class="content"></div>
   <pre id="content_python" class="content"></pre>
+  <div id="content_file" class="content">
+      <h1>Guardar programa</h1>
+      <form name="saveForm">
+        <input name="myFile" id="myFile">
+        <input type="button" name="saveButton" value="Guardar" onclick="saveProgram();">
+      </form>
+      <h1>Cargar programa</h1>
+      <div id="fileList">
+      </div>
+  </div>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 
   <xml id="toolbox" style="display: none">
