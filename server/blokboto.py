@@ -6,9 +6,9 @@ import SocketServer
 import sys
 import os
 import re
-
-DOCUMENT_ROOT="/home/robot/"
-DOCUMENT_ROOT="/home/edu/mapache/home/edu/src/"
+global upload_root
+global xml_root
+global DOCUMENT_ROOT
 
 class S(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def _set_headers(self):
@@ -29,7 +29,8 @@ class S(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
       if self.path.startswith("/listPrograms"):
         filelist = "<table>"
-        for f in os.listdir(DOCUMENT_ROOT + "blokboto/"):
+        print "Searching xml files in " + xml_root
+        for f in os.listdir(xml_root):
           if re.search('xml$', f):
               button = '<button onclick=loadProgram("' + f + '")>Cargar</button>'
               filelist += "<tr><td>" + f + "</td><td>" + button + "</td></tr>"
@@ -39,7 +40,7 @@ class S(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(filelist)
       elif self.path.startswith('/loadProgram?file='):
-        my_filename = DOCUMENT_ROOT + "blokboto/" + self.path.split("=")[1]
+        my_filename = xml_root + self.path.split("=")[1]
         self.send_response(200)
         self.send_header('Content-type','text/xml')
         self.end_headers()
@@ -54,13 +55,13 @@ class S(SimpleHTTPServer.SimpleHTTPRequestHandler):
         data = self.rfile.read(size)
 
 	if self.path == '/runProgram':
-          with open(DOCUMENT_ROOT + "programa.py", 'w') as fh:
+          with open(upload_root + "programa.py", 'w') as fh:
             fh.write(data)
-          os.system("/bin/chmod a+x " + DOCUMENT_ROOT + "programa.py")
-          os.system("/usr/bin/python " + DOCUMENT_ROOT + "programa.py")
+          os.system("/bin/chmod a+x " + upload_root + "programa.py")
+          os.system("/usr/bin/python " + upload_root + "programa.py")
 
 	elif self.path.startswith('/saveProgram?file='):
-          my_filename = DOCUMENT_ROOT + "blokboto/" + self.path.split("=")[1] + ".xml"
+          my_filename = xml_root + self.path.split("=")[1] + ".xml"
           print "Saving " + my_filename
           with open(my_filename, 'w') as fh:
             fh.write(data)
@@ -69,7 +70,15 @@ class S(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.send_response(200)
 
 def run(server_class=HTTPServer, handler_class=S, port=8000):
-    os.chdir(DOCUMENT_ROOT + "blokboto")
+    global upload_root
+    global xml_root
+
+    DOCUMENT_ROOT = os.path.dirname(os.path.realpath(__file__))
+    DOCUMENT_ROOT = os.path.dirname(DOCUMENT_ROOT)
+    upload_root = os.path.dirname(DOCUMENT_ROOT) + os.sep
+    xml_root = os.path.dirname(DOCUMENT_ROOT) + os.sep + "xml" + os.sep
+
+    os.chdir(DOCUMENT_ROOT)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print 'Starting httpd...'
