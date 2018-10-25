@@ -5,7 +5,6 @@
   <meta name="google" value="notranslate">
   <title>Blokboto</title>
   <link rel="stylesheet" href="style.css">
-  <script src="/storage.js"></script>
   <script src="./blockly-master/blockly_compressed.js"></script>
   <script src="./blockly-master/blocks_compressed.js"></script>
   <script src="./blockly-master/python_compressed.js"></script>
@@ -39,10 +38,9 @@
           <tr id="tabRow" height="1em">
             <td id="tab_blocks" class="tabon">...</td>
             <td class="tabmin">&nbsp;</td>
-            <td id="tab_file" class="taboff">File</td>
-            <td id="tab_python" class="taboff">Python</td>
-            <td id="tab_xml" class="taboff">XML</td>
+
             <td class="tabmax">
+
               <button id="trashButton" class="notext" title="...">
                 <img src='blockly-master/media/1x1.gif' class="trash icon21">
               </button>
@@ -52,6 +50,10 @@
               <button id="runButton" class="notext primary" title="...">
                 <img src='blockly-master/media/1x1.gif' class="run icon21">
               </button>
+              <td id="tab_file" class="taboff" style="align:right">Archivo</td>
+              <td id="tab_python" class="taboff">Python</td>
+              <td id="tab_xml" class="taboff">XML</td>
+
             </td>
           </tr>
         </table>
