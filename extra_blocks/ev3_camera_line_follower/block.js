@@ -4,8 +4,9 @@ Blockly.defineBlocksWithJsonArray([
 {
     "type": "ev3_camera_take_picture",
     "message0": "%{BKY_EV3_CAMERA_TAKE_PICTURE}",
-    "output": "Number",
     "colour": "%{BKY_EV3DEV_HUE}",
+    "nextStatement": null,
+    "previousStatement": null,
     "tooltip": "%{BKY_EV3_CAMERA_TAKE_PICTURE_TOOLTIP}"
 }
 ]);
