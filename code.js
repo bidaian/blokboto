@@ -530,7 +530,13 @@ function loadProgram(f) {
 
   xhttp.open("GET", "loadProgram?file=" + f, false);
   xhttp.send();
-  
+
+  // Copied from Code.discard (no warning)
+  Code.workspace.clear();
+  if (window.location.hash) {
+    window.location.hash = '';
+  }
+
   var xml = Blockly.Xml.textToDom(xhttp.responseText);
   Blockly.Xml.domToWorkspace(xml, Code.workspace);
 }
